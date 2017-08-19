@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import { fetchBroadcasts } from '../actions/index';
+import namedSection from '../Mixins/namedSection';
+
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 
@@ -65,4 +68,4 @@ export default connect(
   {
     fetchBroadcasts
   }
-)(BroadcastsList);
+)(namedSection(BroadcastsList, 'Записи'));

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import namedSection from '../Mixins/namedSection';
 import { fetchCurrentBroadcasts } from '../actions/index';
 import Player from '../components/Player';
 
@@ -47,4 +48,4 @@ export default connect(
   {
     fetchCurrentBroadcasts
   }
-)(CurrentStream);
+)(namedSection(CurrentStream, 'Прямой эфир'));

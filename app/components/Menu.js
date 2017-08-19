@@ -1,4 +1,7 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
@@ -14,19 +17,21 @@ class Menu extends PureComponent {
   }
 
   static propTypes = {
+    headerText: PropTypes.string
   };
 
   toggleOpen = () => this.setState({open: !this.state.open});
 
   render() {
     const {
+      headerText = ''
     } = this.props;
 
     return (
       <div style={{height: '64px'}}>
         <AppBar
           style={{position: 'fixed', top: 0, width: '100%'}}
-          title="Навальный Live"
+          title={headerText + ' Навальный Live'}
           showMenuIconButton
           onLeftIconButtonTouchTap={() => this.setState({open: true})}
         />
@@ -44,4 +49,11 @@ class Menu extends PureComponent {
   }
 }
 
-export default Menu;
+export default connect(
+  (state) => {
+    return {
+      headerText: state.applicationHeader
+    };
+  }
+)(Menu);
+

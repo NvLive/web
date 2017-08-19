@@ -1,9 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { fetchShows } from '../actions/index';
+import namedSection from '../Mixins/namedSection';
+
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
-import { Link } from 'react-router-dom';
 
 class ShowsList extends Component {
 
@@ -65,4 +69,4 @@ export default connect(
   {
     fetchShows
   }
-)(ShowsList);
+)(namedSection(ShowsList, 'Программы'));

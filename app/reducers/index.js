@@ -22,9 +22,18 @@ const data = (state = {}, action) => {
   }
 };
 
+const applicationHeader = (state = '', action) => {
+  switch (action.type) {
+    case types.SET_APPLICATION_HEADER:
+      return action.data;
+    default:
+      return state;
+  }
+};
 
 const rootReducer = combineReducers({
   data,
+  applicationHeader,
   routing
 });
 
