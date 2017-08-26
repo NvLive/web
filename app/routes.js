@@ -8,8 +8,7 @@ export default (
 	<Switch>
 		<Route exact path="/" component={CurrentStream} />
 		<Route exact path="/broadcasts" component={BroadcastsList} />
-		<Route exact path="/shows" component={ShowsList} >
-			<Route exact path="/:showId" component={BroadcastsList} />
-		</Route>
+		<Route exact path="/shows" component={ShowsList} />
+		<Route exact path="/shows/:showId" component={BroadcastsList} />
 	</Switch>
 );

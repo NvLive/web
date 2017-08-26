@@ -1,25 +1,58 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import JPlayer, {
+  connect,
+  Gui,
+  SeekBar,
+  Audio,
+  Title,
+  Mute,
+  Play,
+  VolumeBar,
+  Duration,
+  CurrentTime,
+  BrowserUnsupported,
+} from 'react-jplayer';
 
-class Player extends PureComponent {
+import FontIcon from 'material-ui/FontIcon';
 
-  static propTypes = {
-    streamUrl: PropTypes.string,
-    autoPlay: PropTypes.bool,
-  };
-
-  render() {
-    const {
-      streamUrl,
-      autoPlay = false
-    } = this.props;
-
-    return (
-      <div>
-        <audio src={streamUrl} autoPlay={autoPlay} ref=""></audio>
+const Player = () => (
+  <JPlayer className="jp-sleek">
+    <Audio />
+    <Gui>
+      <div className="jp-controls jp-icon-controls">
+        <Play>
+          <FontIcon>play</FontIcon>
+        </Play>
+        <div className="jp-progress">
+          <SeekBar>
+            <CurrentTime />
+            <Duration />
+          </SeekBar>
+        </div>
+        <div className="jp-volume-container">
+          <Mute>
+            <FontIcon>mute</FontIcon>
+          </Mute>
+          <div className="jp-volume-slider">
+            <div className="jp-volume-bar-container">
+              <VolumeBar />
+            </div>
+          </div>
+        </div>
+        <div className="jp-title-container">
+          <Title />
+        </div>
       </div>
-    );
-  }
-}
+      <BrowserUnsupported />
+    </Gui>
+  </JPlayer>
+);
 
-export default Player;
+const options = {
+  id: 'jplayer',
+  keyEnabled: true,
+  verticalVolume: true,
+  media: null,
+};
+
+export default connect(Player, options);

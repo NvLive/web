@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import namedSection from '../Mixins/namedSection';
 import { fetchCurrentBroadcasts } from '../actions/index';
-import Player from '../components/Player';
 
 class CurrentStream extends Component {
 
@@ -22,13 +21,12 @@ class CurrentStream extends Component {
 
     return (
       <div>
-        {[...(data.broadcasts || [])].map( (kv, i) => {
+        {[...(data.broadcasts || [])].map( (kv) => {
           const broadcast = kv[1];
           return(
             <div key={kv[0]}>
               {broadcast.placeholder_image_url && <img src={broadcast.placeholder_image_url} alt=""/>}
               {broadcast.title}
-              <Player streamUrl={broadcast.stream_url} autoPlay={ i === 0 }/>
             </div>
           );
         })}

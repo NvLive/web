@@ -1,6 +1,7 @@
 import { routerReducer as routing } from 'react-router-redux';
 import { combineReducers } from 'redux';
 import * as types from '../actions/types';
+import { reducer as jPlayers } from 'react-jplayer';
 
 const data = (state = {}, action) => {
   switch (action.type) {
@@ -34,7 +35,8 @@ const applicationHeader = (state = '', action) => {
 const rootReducer = combineReducers({
   data,
   applicationHeader,
-  routing
+  routing,
+  jPlayers
 });
 
 export default rootReducer;

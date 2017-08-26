@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Player from './Player';
+
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
@@ -35,6 +37,7 @@ class Menu extends PureComponent {
           showMenuIconButton
           onLeftIconButtonTouchTap={() => this.setState({open: true})}
         />
+        <Player/>
         <Drawer
           open={this.state.open}
           docked={false}
