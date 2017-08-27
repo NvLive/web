@@ -92,7 +92,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!less'
+        loader: 'style!css!less'
       },
       {
         test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
