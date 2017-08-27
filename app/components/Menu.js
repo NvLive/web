@@ -30,23 +30,25 @@ class Menu extends PureComponent {
     } = this.props;
 
     return (
-      <div style={{height: '64px'}}>
-        <AppBar
-          style={{position: 'fixed', top: 0, width: '100%'}}
-          title={headerText + ' Навальный Live'}
-          showMenuIconButton
-          onLeftIconButtonTouchTap={() => this.setState({open: true})}
-        />
+      <div>
+        <div style={{height: '64px'}}>
+          <AppBar
+            style={{position: 'fixed', top: 0, width: '100%'}}
+            title={headerText + ' Навальный Live'}
+            showMenuIconButton
+            onLeftIconButtonTouchTap={() => this.setState({open: true})}
+          />
+          <Drawer
+            open={this.state.open}
+            docked={false}
+            onRequestChange={(open) => this.setState({open})}
+          >
+            <Link to="/"><MenuItem onTouchTap={this.toggleOpen}>Прямой эфир</MenuItem></Link>
+            <Link to="/shows"><MenuItem onTouchTap={this.toggleOpen}>Программы</MenuItem></Link>
+            <Link to="/broadcasts"><MenuItem onTouchTap={this.toggleOpen}>Записи</MenuItem></Link>
+          </Drawer>
+        </div>
         <Player/>
-        <Drawer
-          open={this.state.open}
-          docked={false}
-          onRequestChange={(open) => this.setState({open})}
-        >
-          <Link to="/"><MenuItem onTouchTap={this.toggleOpen}>Прямой эфир</MenuItem></Link>
-          <Link to="/shows"><MenuItem onTouchTap={this.toggleOpen}>Программы</MenuItem></Link>
-          <Link to="/broadcasts"><MenuItem onTouchTap={this.toggleOpen}>Записи</MenuItem></Link>
-        </Drawer>
       </div>
     );
   }

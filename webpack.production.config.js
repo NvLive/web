@@ -5,6 +5,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsPlugin = require('stats-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   // The entry file. All your app roots from here.
@@ -52,7 +53,8 @@ module.exports = {
     // plugin for passing in data to the js, like what NODE_ENV we are in.
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    })
+    }),
+    new CopyWebpackPlugin([{ from: 'app/static', to: 'static' }])
   ],
 
   // ESLint options
