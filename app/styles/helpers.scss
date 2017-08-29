@@ -1,0 +1,54 @@
+$pluses: "";
+@for $i from 1 through 4 {
+
+  @if($i != 1){
+    $pluses: "#{$pluses}" + "#{\+}";
+  }
+
+  .p#{$pluses}{
+    padding: #{$measure-unit * $i}px;
+  }
+  .pt#{$pluses}{
+    padding-top: #{$measure-unit * $i}px;
+  }
+  .pb#{$pluses}{
+    padding-bottom: #{$measure-unit * $i}px;
+  }
+  .pl#{$pluses}{
+    padding-left: #{$measure-unit * $i}px;
+  }
+  .pr#{$pluses}{
+    padding-right: #{$measure-unit * $i}px;
+  }
+  .pv#{$pluses}{
+    padding-top: #{$measure-unit * $i}px;
+    padding-bottom: #{$measure-unit * $i}px;
+  }
+  .ph#{$pluses}{
+    padding-left: #{$measure-unit * $i}px;
+    padding-right: #{$measure-unit * $i}px;
+  }
+  .m#{$pluses}{
+    margin: #{$measure-unit * $i}px;
+  }
+  .mt#{$pluses}{
+    margin-top: #{$measure-unit * $i}px;
+  }
+  .mb#{$pluses}{
+    margin-bottom: #{$measure-unit * $i}px;
+  }
+  .ml#{$pluses}{
+    margin-left: #{$measure-unit * $i}px;
+  }
+  .mr#{$pluses}{
+    margin-right: #{$measure-unit * $i}px;
+  }
+  .mv#{$pluses}{
+    margin-top: #{$measure-unit * $i}px;
+    margin-bottom: #{$measure-unit * $i}px;
+  }
+  .mh#{$pluses}{
+    margin-left: #{$measure-unit * $i}px;
+    margin-right: #{$measure-unit * $i}px;
+  }
+}

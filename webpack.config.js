@@ -58,7 +58,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!sass'
+                loader: 'style!css!sass'
             },
             {
               test: /\.less$/,

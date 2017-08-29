@@ -1,6 +1,6 @@
 import React from 'react';
 import Routes from '../routes';
-import Menu from '../components/Menu';
+import Menu from './ApplicationHeader';
 
 const App = () =>
   <div>

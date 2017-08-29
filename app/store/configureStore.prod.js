@@ -8,9 +8,6 @@ import rootReducer from '../reducers';
 export const history = createHistory();
 const middleware = routerMiddleware(history);
 
-import 'react-jplayer/src/less/skins/sleek.less';
-import 'react-jplayer/src/less/controls/iconControls.less';
-
 import LivePlayer from '../components/Player';
 
 export function configureStore(initialState) {

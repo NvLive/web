@@ -3,15 +3,13 @@ import propTypes from 'prop-types';
 import JPlayer, {
   connect,
   Gui,
-  SeekBar,
   Audio,
   Title,
   Mute,
   Play,
   VolumeBar,
-  Duration,
-  CurrentTime,
   BrowserUnsupported,
+  CurrentTime
 } from 'react-jplayer';
 
 import FontIcon from 'material-ui/FontIcon';
@@ -35,44 +33,55 @@ export class Player extends Component {
     setVolume: propTypes.func,
   };
 
+  static contextTypes = {
+    muiTheme: propTypes.object,
+  };
+
   render() {
     const {
       jPlayers
     } = this.props;
 
-    const message = Object.keys(jPlayers[Player.DEFAULT_ID].media.sources).length !== 0
+    const player = jPlayers[Player.DEFAULT_ID];
+
+    const message = Object.keys(player.media.sources).length !== 0
       ? <BrowserUnsupported />
       : <span>Выберите запись или стрим</span>;
 
+    const volumeIcon = player.muted
+      ? <FontIcon color={'white'} style={{fontSize: '42px'}} className="material-icons">volume_off</FontIcon>
+      : <FontIcon color={'white'} style={{fontSize: '42px'}} className="material-icons">volume_up</FontIcon>;
+
+    const playIcon = player.paused
+      ? <FontIcon color={'white'} style={{fontSize: '42px'}} className="material-icons">play_arrow</FontIcon>
+      : <FontIcon color={'white'} style={{fontSize: '42px'}} className="material-icons">pause</FontIcon>;
+
     return(
-      <JPlayer className="jp-sleek">
+      <JPlayer className="">
         <Audio />
         <Gui>
           <div className="jp-controls jp-icon-controls">
+            <span>
+              <CurrentTime />
+            </span>
             <Play>
-              <FontIcon style={{fontSize: '42px'}} className="material-icons">play_arrow</FontIcon>
+              {playIcon}
             </Play>
-            <div className="jp-progress">
-              <SeekBar>
-                <CurrentTime />
-                <Duration />
-              </SeekBar>
-            </div>
-            <div className="jp-volume-container">
+            <span className="jp-volume-container">
               <Mute>
-                <FontIcon style={{fontSize: '42px'}} className="material-icons">volume_mute</FontIcon>
+                {volumeIcon}
               </Mute>
               <div className="jp-volume-slider">
                 <div className="jp-volume-bar-container">
                   <VolumeBar />
                 </div>
               </div>
-            </div>
-            <div className="jp-title-container">
+            </span>
+            <span className="jp-title-container">
               <Title />
-            </div>
+            </span>
           </div>
-          <message/>
+          {message}
         </Gui>
       </JPlayer>
     );
@@ -83,7 +92,12 @@ const options = {
   id: Player.DEFAULT_ID,
   keyEnabled: true,
   verticalVolume: true,
-  media: undefined,
+  media: {
+    title: 'radio',
+    sources: {
+      mp3: 'http://streaming307.radionomy.com:80/Jazzandloungestation'
+    }
+  },
 };
 
 export default connect(Player, options);

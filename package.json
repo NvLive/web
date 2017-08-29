@@ -60,6 +60,7 @@
     "redux-devtools-log-monitor": "^1.0.11",
     "rimraf": "^2.5.2",
     "sass-loader": "^3.2.0",
+    "sass-variable-loader": "^0.1.2",
     "stats-webpack-plugin": "^0.3.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",

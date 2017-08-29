@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Player from './Player';
+import Seekbar from './Seekbar';
 
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router-dom';
 
-class Menu extends PureComponent {
+class ApplicationHeader extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -17,6 +18,10 @@ class Menu extends PureComponent {
       open: false
     };
   }
+
+  static contextTypes = {
+    muiTheme: PropTypes.object,
+  };
 
   static propTypes = {
     headerText: PropTypes.string
@@ -29,12 +34,23 @@ class Menu extends PureComponent {
       headerText = ''
     } = this.props;
 
+    const palette = this.context.muiTheme.palette;
+
     return (
       <div>
         <div style={{height: '64px'}}>
           <AppBar
             style={{position: 'fixed', top: 0, width: '100%'}}
-            title={headerText + ' Навальный Live'}
+            title={<div style={{display: 'flex'}}>
+              <Player/>
+              <span className="pl+">
+              {headerText.toLowerCase()}
+              </span>
+              <b className="ph+">
+                <span style={{color: palette.primary2Color}}>Н</span>
+                <span style={{color: 'white'}}>L</span>
+              </b>
+            </div>}
             showMenuIconButton
             onLeftIconButtonTouchTap={() => this.setState({open: true})}
           />
@@ -48,7 +64,7 @@ class Menu extends PureComponent {
             <Link to="/broadcasts"><MenuItem onTouchTap={this.toggleOpen}>Записи</MenuItem></Link>
           </Drawer>
         </div>
-        <Player/>
+        <Seekbar/>
       </div>
     );
   }
@@ -60,5 +76,5 @@ export default connect(
       headerText: state.applicationHeader
     };
   }
-)(Menu);
+)(ApplicationHeader);
 
